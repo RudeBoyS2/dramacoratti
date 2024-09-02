@@ -1,0 +1,56 @@
+import React from "react";
+import type { Pdf } from "../../types";
+import { Flex, Heading, Icon, Link, Button, Text } from "@chakra-ui/react";
+import { AiOutlineEye, AiOutlineDownload } from "react-icons/ai";
+import ChakraNextImage from "./ChakraNextImage";
+
+type PdfCardProps = {
+    pdf: Pdf | undefined;
+};
+
+const PdfCard: React.FC<PdfCardProps> = ({pdf}) => {
+  const seePdfUrl = pdf?.pdfUrl;
+
+  return (
+    <Flex
+      key={pdf?._id}
+      flexDir="column"
+      w="250px"
+      minH="370px"
+      h="370px"
+      align="center"
+      bg="white"
+      border="3px solid #CD8D8E"
+    >
+      <ChakraNextImage src="/assets/carpeta.jpg" w="200px" h="50%" />
+      <Flex
+        flexDir="column"
+        align="center"
+        justify="space-evenly"
+        h="50%"
+        w="100%"
+        p="4"
+        borderTop="2px solid #CD8D8E"
+      >
+        <Heading
+          as="h3"
+          mt="2"
+          fontSize="lg"
+          textAlign="center"
+          w="100%"          
+        >
+          {pdf?.pdfTitle}
+        </Heading>
+        <Flex gap="2" mt="4">
+          <Link href={seePdfUrl} isExternal>
+            <Button bg="primary" _hover={{bg: ""}} _active={{bg: ""}}>
+              <Text color="white">Ver Archivos</Text>
+            </Button>
+          </Link>
+        </Flex>
+      </Flex>
+    </Flex>
+  );
+};
+
+export default PdfCard;
