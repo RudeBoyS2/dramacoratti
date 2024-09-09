@@ -48,9 +48,6 @@ const Home: NextPage = () => {
     }
   }, [userCourses]);
 
-  console.log(userCourses);
-  console.log(userPdfs);
-
   return (
     <>
       <Navbar />
