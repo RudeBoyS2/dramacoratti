@@ -13,12 +13,12 @@ const TabSwitcher: React.FC<TabSwitcherProps> = ({
   return (
     <Flex h={{base: "45px", md: "50px"}} w="100%" pl="5" gap="2" my="4" alignItems="center">
               <Button
-                h={tab === "assignedCourses" ? "45px" : {base: "35px", md: "40px"}}
-                fontSize={{base: "sm", md: "lg"}}
-                fontFamily="secondary"
+                h="45px"
+                fontSize={{base: "sm", md: "md"}}
+                fontFamily="primary"
                 color="white"
-                bg={tab === "assignedCourses" ? "primary" : "secondary"}
-                _hover={{ bg: "", height: "45px" }}
+                bg={tab === "assignedCourses" ? "primary" : "rgba(0,63,80,.75)"}
+                _hover={{ bg: "" }}
                 _active={{ bg: "" }}
                 borderRadius="2xl"
                 onClick={() => {
@@ -28,12 +28,12 @@ const TabSwitcher: React.FC<TabSwitcherProps> = ({
                 Cursos Asignados
               </Button>
               <Button
-                h={tab === "addCourses" ? "45px" : {base: "35px", md: "40px"}}
-                fontSize={{base: "sm", md: "lg"}}
-                fontFamily="secondary"
+                h="45px"
+                fontSize={{base: "sm", md: "md"}}
+                fontFamily="primary"
                 color="white"
-                bg={tab === "addCourses" ? "primary" : "secondary"}
-                _hover={{ bg: "", height: "45px" }}
+                bg={tab === "addCourses" ? "primary" : "rgba(0,63,80,.75)"}
+                _hover={{ bg: "" }}
                 _active={{ bg: "" }}
                 borderRadius="2xl"
                 onClick={() => {

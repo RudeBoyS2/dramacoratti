@@ -19,7 +19,8 @@ const Navbar: React.FC = () => {
                 w="100%"
                 h="12%"
                 justifyContent="center"
-                px={{base: "1.5rem", md: "5rem"}}
+                pr={{base: "1.5rem", md: "5rem"}}
+                pl={{base: "1.5rem", md: "3rem"}}
                 align="center"
                 borderBottom="1px solid #e2e8f0"
                 bg="#f1f2f3"
@@ -28,8 +29,9 @@ const Navbar: React.FC = () => {
                 <ChakraNextImage
                     src="/assets/logo.png"
                     alt="logo"
-                    h="70px"
-                    w="140px"
+                    h="107px"
+                    w="187px"
+                    fit="cover"
                     alignSelf="center"
                     onClick={() => {
                         router.push("/");

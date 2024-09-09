@@ -21,7 +21,7 @@ const Sidebar: React.FC<Props> = ({ open, setOpen }) => {
       <Flex
         w={open ? "15rem" : "5rem"}
         h="100%"
-        bg="secondary"
+        bg="primary"
         flexDir="column"
         py="2rem"
         gap="2rem"

@@ -29,9 +29,9 @@ const AddCoursesTable: React.FC<AssignedCoursesTableProps> = ({
         <Table variant="simple">
           <Thead bg="secondary">
             <Tr>
-              <Th w="40%" fontSize={{base: "sm", md: "lg"}}>Titulo</Th>
-              <Th w="30%" fontSize={{base: "sm", md: "lg"}}>Descripción</Th>
-              <Th w="30%" fontSize={{base: "sm", md: "lg"}}>Añadir</Th>
+              <Th w="40%" fontSize={{base: "sm", md: "lg"}} color="#fff">Titulo</Th>
+              <Th w="30%" fontSize={{base: "sm", md: "lg"}} color="#fff">Descripción</Th>
+              <Th w="30%" fontSize={{base: "sm", md: "lg"}} color="#fff">Añadir</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -61,7 +61,6 @@ const AddCoursesTable: React.FC<AssignedCoursesTableProps> = ({
                       <Icon
                         as={AiOutlineFolderAdd}
                         fontSize="2xl"
-                        fill="green"
                         onClick={() => {
                           addCourse(course);
                         }}

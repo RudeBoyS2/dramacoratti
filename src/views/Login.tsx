@@ -66,11 +66,11 @@ const Login: NextPage = (props) => {
         >
           <ChakraNextImage
             src="/assets/logo.png"
-            h="85px"
-            w="150px"
+            h="107px"
+            w="187px"
             alt="logo"
             mr="10"
-            fit="contain"
+            fit="cover"
             cursor="pointer"
             onClick={() => {
               router.push("/");
@@ -88,7 +88,7 @@ const Login: NextPage = (props) => {
         </Flex>
         <Flex
           justifyContent="center"
-          bg="linear-gradient(90deg, rgba(205,141,142,1) 0%, rgba(168,64,65,1) 65%)"
+          bg="linear-gradient(90deg, rgba(59,115,130,1) 20%, rgba(0,63,80,1) 72%);"
           w="100%"
           h="100%"
         >
@@ -153,11 +153,12 @@ const Login: NextPage = (props) => {
                         <Button
                           isLoading={loading}
                           type="submit"
-                          bg="linear-gradient(90deg, rgba(179,87,88,1) 20%, rgba(173,75,76,1) 80%)"
+                          bg="primary"
                           _hover={{
                             bg: "white",
                             color: "primary",
-                            border: "2px solid #1f3b31",
+                            border: "1px solid #003F50",
+                            transition: "all .2s ease",
                           }}
                           color="white"
                           width="full"

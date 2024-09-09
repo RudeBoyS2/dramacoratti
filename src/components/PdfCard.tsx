@@ -20,7 +20,7 @@ const PdfCard: React.FC<PdfCardProps> = ({pdf}) => {
       h="370px"
       align="center"
       bg="white"
-      border="3px solid #CD8D8E"
+      border="3px solid #003F50"
     >
       <ChakraNextImage src="/assets/carpeta.jpg" w="200px" h="50%" />
       <Flex
@@ -30,7 +30,7 @@ const PdfCard: React.FC<PdfCardProps> = ({pdf}) => {
         h="50%"
         w="100%"
         p="4"
-        borderTop="2px solid #CD8D8E"
+        borderTop="2px solid #003F50"
       >
         <Heading
           as="h3"

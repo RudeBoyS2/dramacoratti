@@ -119,10 +119,10 @@ const Home: NextPage = () => {
                   mt="7"
                   w="100%"
                   h="35px"
-                  bg="secondary"
+                  bg="primary"
                   color="white"
-                  _hover={{ bg: "secondary", opacity: "85%" }}
-                  _active={{ bg: "secondary", opacity: "85%" }}
+                  _hover={{ bg: "primary", opacity: "85%" }}
+                  _active={{ bg: "primary", opacity: "85%" }}
                   onClick={() => router.push("/courses")}
                 >
                   Ir a Cursos
@@ -148,10 +148,10 @@ const Home: NextPage = () => {
                   mt="7"
                   w="100%"
                   h="35px"
-                  bg="secondary"
+                  bg="primary"
                   color="white"
-                  _hover={{ bg: "secondary", opacity: "85%" }}
-                  _active={{ bg: "secondary", opacity: "85%" }}
+                  _hover={{ bg: "primary", opacity: "85%" }}
+                  _active={{ bg: "primary", opacity: "85%" }}
                   onClick={() => router.push("/reading")}
                 >
                   Ir a Material de Lectura
@@ -168,7 +168,6 @@ const Home: NextPage = () => {
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
 
-  console.log(session);
   if (session !== null) {
     return {
       props: {
