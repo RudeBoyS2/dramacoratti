@@ -46,6 +46,12 @@ const Backoffice: React.FC = () => {
   }, []);
 
   const router = useRouter();
+  const { data: session, status }: any = useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push("/login");
+    },
+  });
 
   return (
     <>

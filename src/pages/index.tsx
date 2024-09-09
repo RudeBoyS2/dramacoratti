@@ -25,7 +25,12 @@ const Home: NextPage = () => {
   const [userPdfs, setUserPdfs] = useState<any[]>([]);
 
   const router = useRouter();
-  const { data: session, status }: any = useSession();
+  const { data: session, status }: any = useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push("/login");
+    },
+  });
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -158,13 +163,13 @@ const Home: NextPage = () => {
 };
 
 export async function getServerSideProps() {
-  const session = await getSession();
+    const session = await getSession();
 
-  return {
-      props: {
-          session,
-      },
-  };
+    return {
+        props: {
+            session,
+        },
+    };
 }
 
 export default Home;
