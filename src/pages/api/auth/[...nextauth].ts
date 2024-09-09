@@ -21,7 +21,10 @@ export const authOptions: NextAuthOptions = {
             email,
             password,
           })
-          .then((res) => res.data);
+          .then((res) => {
+            console.log(res.data);
+            return res.data;
+          });
 
         if (user.status === "ok") {
           return user;
