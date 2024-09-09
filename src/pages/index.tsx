@@ -162,14 +162,23 @@ const Home: NextPage = () => {
   );
 };
 
-export async function getServerSideProps() {
-  const session = await getSession();
+export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
 
-  return {
-    props: {
-      session,
-    },
-  };
+  if (session !== null) {
+    return {
+      props: {
+        session,
+      },
+    };
+  } else {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
 }
 
 export default Home;

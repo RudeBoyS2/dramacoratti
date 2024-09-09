@@ -113,30 +113,11 @@ const Backoffice: React.FC = () => {
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
 
-  let role = "";
-
-  if (session) {
-    //@ts-ignore
-    const data = await API.getUserById(session?.user.id);
-    //@ts-ignore
-
-    role = data.data.role;
-  }
-
-  if (role !== "admin") {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  } else {
     return {
       props: {
         session,
       },
     };
-  }
 }
 
 export default Backoffice;
