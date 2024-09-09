@@ -15,23 +15,23 @@ export const authOptions: NextAuthOptions = {
 
             },
             async authorize(credentials: any, req: any) {
-                const { email, password } = credentials as any
+                // const { email, password } = credentials as any
 
-                const user = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/users/auth`, {
+                // const user = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/users/auth`, {
 
-                    email,
-                    password,
-                }).then((res) => res.data);
-                // const user = {
-                //     status: "ok",
-                //     email: "geybitch@gmail.com",
-                //     password: "password",
+                //     email,
+                //     password,
+                // }).then((res) => res.data);
+                // // const user = {
+                // //     status: "ok",
+                // //     email: "geybitch@gmail.com",
+                // //     password: "password",
+                // // }
+                // if (user.status === 'ok') {
+                //     return user
                 // }
-                if (user.status === 'ok') {
-                    return user
-                }
-                return null
-
+                // return null
+                return credentials
             }
         }),
     ],
