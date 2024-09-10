@@ -19,7 +19,7 @@ const Sidebar: React.FC<Props> = ({ open, setOpen }) => {
   return (
     <>
       <Flex
-        w={open ? "15rem" : "5rem"}
+        w={open ? "15rem" : "4.5rem"}
         h="100%"
         bg="primary"
         flexDir="column"

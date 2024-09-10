@@ -14,9 +14,8 @@ import type { NextPage } from "next";
 import { useState } from "react";
 import { Formik, Field } from "formik";
 import { useRouter } from "next/router";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import ChakraNextImage from "../components/ChakraNextImage";
-import { AiOutlineArrowLeft } from "react-icons/ai";
 
 const Login: NextPage = (props) => {
   const toast = useToast();
@@ -58,6 +57,7 @@ const Login: NextPage = (props) => {
           h="120px"
           bg="#f1f2f3"
           alignItems="center"
+          justifyContent="center"
           px={{ base: "1.5rem", md: "5rem" }}
           gap="2rem"
           boxShadow="lg"
@@ -69,21 +69,11 @@ const Login: NextPage = (props) => {
             h="107px"
             w="187px"
             alt="logo"
-            mr="10"
             fit="cover"
             cursor="pointer"
             onClick={() => {
               router.push("/");
             }}
-          />
-          <Icon
-            as={AiOutlineArrowLeft}
-            ml="auto"
-            fontSize="4xl"
-            onClick={() => {
-              router.push("/");
-            }}
-            cursor="pointer"
           />
         </Flex>
         <Flex

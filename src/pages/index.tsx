@@ -89,12 +89,13 @@ const Home: NextPage = () => {
               h="65%"
               w="100%"
               px={{ base: "6", md: "20" }}
-              justify="center"
+              justify={{ base: "start", md: "center" }}
+              align={{ base: "center", md: "start" }}
               flexDir={{ base: "column", md: "row" }}
             >
               <Card
-                h={{ base: "150px", md: "200px" }}
-                w={{ base: "200px", md: "300px" }}
+                h="200px"
+                w={{ base: "230px", md: "300px" }}
                 bg="white"
                 p="6"
               >
@@ -109,7 +110,7 @@ const Home: NextPage = () => {
                   </span>
                 </Text>
                 <Button
-                  mt="7"
+                  mt={{base: "4", md: "7"}}
                   w="100%"
                   h="35px"
                   bg="primary"
@@ -122,8 +123,8 @@ const Home: NextPage = () => {
                 </Button>
               </Card>
               <Card
-                h={{ base: "150px", md: "200px" }}
-                w={{ base: "200px", md: "300px" }}
+                h="200px"
+                w={{ base: "230px", md: "300px" }}
                 bg="white"
                 p="6"
               >
@@ -138,7 +139,7 @@ const Home: NextPage = () => {
                   </span>
                 </Text>
                 <Button
-                  mt="7"
+                  mt={{base: "4", md: "7"}}
                   w="100%"
                   h="35px"
                   bg="primary"

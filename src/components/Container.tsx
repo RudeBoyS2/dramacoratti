@@ -12,7 +12,7 @@ const Container: React.FC<Props> = ({ open, setOpen, children }) => {
         <>
             <Flex
                 w="100vw"
-                ml={open ? "15rem" : "5rem"}
+                ml={open ? "15rem" : "4.5rem"}
                 transition="all .5s ease"
                 flexDir='column'
             >

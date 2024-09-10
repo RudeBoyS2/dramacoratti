@@ -51,6 +51,7 @@ const Courses: React.FC = () => {
             justify="center"
             align="center"
             py="6"
+            overflowY={{ base: "scroll", md: "hidden" }}
           >
             {pdfs?.length === 0 ? (
               <Heading as="h1">No tienes material de lectura asignado</Heading>
@@ -60,7 +61,7 @@ const Courses: React.FC = () => {
                 gap="4"
                 w="90%"
                 h="100%"
-                justify="center"
+                justify={{base: "start", md:"center"}}
                 align="center"
                 flexWrap={{ base: "nowrap", md: "wrap" }}
               >
