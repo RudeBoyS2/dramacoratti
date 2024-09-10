@@ -27,9 +27,6 @@ const Home: NextPage = () => {
   const router = useRouter();
   const { data: session, status }: any = useSession({
     required: true,
-    onUnauthenticated() {
-      router.push("/login");
-    },
   });
 
   useEffect(() => {
