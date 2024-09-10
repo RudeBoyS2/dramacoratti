@@ -14,7 +14,7 @@ type Props = {
 };
 const Sidebar: React.FC<Props> = ({ open, setOpen }) => {
   const { data: session, status } = useSession();
-  const router = useRouter().pathname;
+  const router = useRouter();
 
   return (
     <>
@@ -77,7 +77,10 @@ const Sidebar: React.FC<Props> = ({ open, setOpen }) => {
           justifyContent="start"
           gap="1rem"
           pl="1.4rem"
-          onClick={() => signOut()}
+          onClick={() => {
+            signOut();
+            router.push("/login");
+          }}
           cursor="pointer"
           mt="5rem"
         >

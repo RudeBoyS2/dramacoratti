@@ -26,12 +26,9 @@ const Home: NextPage = () => {
 
   const router = useRouter();
   const { data: session, status }: any = useSession();
+  console.log("status", status)
 
   useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("/login");
-    }
-
     if (status === "authenticated") {
       API.getMyCoursesByUserId(session.user?.id).then((res: any) => {
         setUserCourses(res.data);
@@ -161,14 +158,23 @@ const Home: NextPage = () => {
   );
 };
 
-export async function getServerSideProps() {
-    const session = await getSession();
+export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
 
+  if (session !== null) {
     return {
-        props: {
-            session,
-        },
+      props: {
+        session,
+      },
     };
+  } else {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
 }
 
 export default Home;
