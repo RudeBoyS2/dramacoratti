@@ -34,15 +34,16 @@ const Backoffice: React.FC<{ session: any }> = ({ session }) => {
       const coursesWithPdf = res?.data?.filter(
         (course: Course) => course?.coursePdf?.length
       );
-      const pdfs: Pdf[] = coursesWithPdf?.map((course: Course) => course.coursePdf).flat();
-      
+      const pdfs: Pdf[] = coursesWithPdf
+        ?.map((course: Course) => course.coursePdf)
+        .flat();
+
       setPDFs(pdfs);
     });
 
     API.getTopics().then((res: any) => {
       setTopics(res?.data);
     });
-
   }, []);
 
   return (
@@ -103,15 +104,9 @@ const Backoffice: React.FC<{ session: any }> = ({ session }) => {
 };
 
 export async function getServerSideProps(context: any) {
-  const session = await getSession(context);
+  const session: any = await getSession(context);
 
-  if (session !== null) {
-    return {
-      props: {
-        session,
-      },
-    };
-  } else {
+  if (!session) {
     return {
       redirect: {
         destination: "/login",
@@ -119,6 +114,21 @@ export async function getServerSideProps(context: any) {
       },
     };
   }
+  
+  if (session && session.user?.email !== "admin@admin.com") {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      session,
+    },
+  };
 }
 
 export default Backoffice;
