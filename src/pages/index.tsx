@@ -25,9 +25,7 @@ const Home: NextPage = () => {
   const [userPdfs, setUserPdfs] = useState<any[]>([]);
 
   const router = useRouter();
-  const { data: session, status }: any = useSession({
-    required: true,
-  });
+  const { data: session, status }: any = useSession();
 
   useEffect(() => {
     if (status === "authenticated") {
