@@ -28,6 +28,10 @@ const Home: NextPage = () => {
   const { data: session, status }: any = useSession();
 
   useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/login");
+    }
+
     if (status === "authenticated") {
       API.getMyCoursesByUserId(session.user?.id).then((res: any) => {
         setUserCourses(res.data);
