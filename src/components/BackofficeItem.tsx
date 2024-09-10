@@ -29,7 +29,7 @@ const BackofficeItem: React.FC<Props> = ({
                 bg={text === category ? "primary" : "#f1f2f3"}
                 boxShadow='rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;'
             >
-                <Icon as={icon} fontSize="xl" fill={text === category ? '#202020' : '#202020'}/>
+                <Icon as={icon} fontSize="xl" fill={text === category ? '#f1f2f3' : '#202020'}/>
                 <Text
                     ml="2"
                     fontFamily="secondary"
