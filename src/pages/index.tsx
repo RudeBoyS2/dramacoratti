@@ -19,30 +19,28 @@ type Course = {
   id: string;
 };
 
-const Home: NextPage = () => {
+const Home: NextPage<{ session: any }> = ({ session }) => {
   const [open, setOpen] = useState(false);
   const [userCourses, setUserCourses] = useState<Course[]>([]);
   const [userPdfs, setUserPdfs] = useState<any[]>([]);
 
   const router = useRouter();
-  const { data: session, status }: any = useSession();
-  console.log("status", status)
 
   useEffect(() => {
-    if (status === "authenticated") {
+    if (session) {
       API.getMyCoursesByUserId(session.user?.id).then((res: any) => {
         setUserCourses(res.data);
       });
     }
-  }, [status]);
+  }, [session]);
 
   useEffect(() => {
-    if (userCourses.length) {
+    if (session && userCourses.length) {
       const pdfs: any[] = []
       userCourses.forEach((course) => course.coursePdf.forEach((pdf: any) => pdfs.push(pdf.pdfTitle)));
       setUserPdfs(pdfs);
     }
-  }, [userCourses]);
+  }, [session, userCourses]);
 
   return (
     <>

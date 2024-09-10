@@ -1,5 +1,5 @@
 import { Flex, Accordion } from "@chakra-ui/react";
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { Course } from "../../types";
@@ -21,15 +21,9 @@ const filterCoursesByTopic = (courses: Course[], topic: string) => {
     });
 };
 
-const Courses: React.FC = () => {
+const Courses: React.FC<{ session: any }> = ({ session }) => {
     const [open, setOpen] = useState(false);
     const router = useRouter();
-    const { data: session, status }: any = useSession({
-        required: true,
-        onUnauthenticated() {
-            router.push("/");
-        },
-    });
     const [topics, setTopics] = useState<any>([]);
 
     const [myCourses, setMyCourses] = useState([]);
@@ -38,7 +32,7 @@ const Courses: React.FC = () => {
         title: "",
     });
     useEffect(() => {
-        if (status == "authenticated") {
+        if (session) {
             API.getMyCoursesByUserId(session.user?.id).then((res: any) => {
                 setMyCourses(res.data);
 
@@ -50,7 +44,7 @@ const Courses: React.FC = () => {
                 setTopics(Array.from(topicsSet));
             });
         }
-    }, [status]);
+    }, [session]);
 
     return (
         <>
@@ -63,7 +57,6 @@ const Courses: React.FC = () => {
                         w="100%"
                         maxH="100%"
                         overflow="auto"
-                        // margin="auto"
                         gap={{ base: 12, lg: "12" }}
                         flexDirection={{ base: "column-reverse", sm: "row" }}
                         bg="#f1f2f3"
@@ -129,3 +122,22 @@ const Courses: React.FC = () => {
 };
 
 export default Courses;
+
+export async function getServerSideProps(context: any) {
+    const session = await getSession(context);
+  
+    if (session !== null) {
+      return {
+        props: {
+          session,
+        },
+      };
+    } else {
+      return {
+        redirect: {
+          destination: "/login",
+          permanent: false,
+        },
+      };
+    }
+  }

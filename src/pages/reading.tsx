@@ -1,6 +1,6 @@
 import type { Course, Pdf } from "../../types";
 import { Flex, Heading, Button, Icon, Link } from "@chakra-ui/react";
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Container from "../components/Container";
@@ -9,21 +9,14 @@ import Sidebar from "../components/Sidebar";
 import API from "../utils/API";
 import PdfCard from "../components/PdfCard";
 
-const Courses: React.FC = () => {
+const Courses: React.FC<{ session: any }> = ({ session }) => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const [courses, setCourses] = useState<Course[]>([]);
   const [pdfs, setPdfs] = useState<(Pdf | undefined)[]>([]);
 
-  const { data: session, status }: any = useSession({
-    required: true,
-    onUnauthenticated() {
-      router.push("/");
-    },
-  });
-
   useEffect(() => {
-    if (status == "authenticated") {
+    if (session) {
       API.getMyCoursesByUserId(session.user.id).then((res: any) => {
         const filteredData: Course[] = res?.data?.filter(
           (course: Course) => course.coursePdf!.length > 0
@@ -36,7 +29,7 @@ const Courses: React.FC = () => {
         setPdfs(pdfs);
       });
     }
-  }, [status]);
+  }, [session]);
 
   return (
     <>
@@ -78,3 +71,22 @@ const Courses: React.FC = () => {
 };
 
 export default Courses;
+
+export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
+
+  if (session !== null) {
+    return {
+      props: {
+        session,
+      },
+    };
+  } else {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+}

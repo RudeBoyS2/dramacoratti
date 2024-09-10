@@ -15,7 +15,7 @@ import { useRouter } from "next/router";
 import TableTopics from "../components/TableTopics";
 import TablePdfs from "../components/TablePdfs";
 
-const Backoffice: React.FC = () => {
+const Backoffice: React.FC<{ session: any }> = ({ session }) => {
   const [open, setOpen] = useState(false);
   const [category, setCategory] = useState("Usuarios");
   const [users, setUsers] = useState<User[]>([]);
@@ -44,8 +44,6 @@ const Backoffice: React.FC = () => {
     });
 
   }, []);
-
-  const router = useRouter();
 
   return (
     <>
@@ -107,11 +105,20 @@ const Backoffice: React.FC = () => {
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
 
+  if (session !== null) {
     return {
       props: {
         session,
       },
     };
+  } else {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
 }
 
 export default Backoffice;
