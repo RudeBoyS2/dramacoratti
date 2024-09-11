@@ -22,7 +22,6 @@ export const authOptions: NextAuthOptions = {
             password,
           })
           .then((res) => {
-            console.log(res.data);
             return res.data;
           });
 

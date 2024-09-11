@@ -7,11 +7,9 @@ const LoginPage: React.FC = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  useEffect(() => {
-    if (status === "authenticated") {
-      router.push("/");
-    }
-  }, [status, router]);
+  if (status === "authenticated") {
+    router.push("/");
+  }
 
   return <Login />;
 };

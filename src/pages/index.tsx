@@ -24,11 +24,10 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
   const [userCourses, setUserCourses] = useState<Course[]>([]);
   const [userPdfs, setUserPdfs] = useState<any[]>([]);
   const { data: sessionData, status }: any = useSession();
-  
-  console.log(sessionData?.user?.id);
-  console.log(status);
 
   const router = useRouter();
+  console.log(session)
+  console.log(sessionData)
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -92,7 +91,7 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
                 color="#000"
                 textAlign={{ base: "center", md: "unset" }}
               >
-                Bienvenido/a {session?.user?.name}!
+                Bienvenido/a {sessionData?.user?.name}!
               </Heading>
             </Flex>
             <Flex
