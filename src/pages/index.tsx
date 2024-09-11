@@ -27,12 +27,6 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (session === null) {
-      router.push("/login");
-    }
-  }, [session, router]);
-
-  useEffect(() => {
     if (session) {
       API.getMyCoursesByUserId(session.user?.id).then((res: any) => {
         setUserCourses(res.data);
@@ -168,6 +162,15 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
 
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  
   return {
     props: {
       session,
