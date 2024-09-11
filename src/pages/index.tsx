@@ -23,8 +23,15 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
   const [open, setOpen] = useState(false);
   const [userCourses, setUserCourses] = useState<Course[]>([]);
   const [userPdfs, setUserPdfs] = useState<any[]>([]);
+  const { data: sessionData, status } = useSession();
 
   const router = useRouter();
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/login");
+    }
+  }, [status, router]);
 
   useEffect(() => {
     if (session) {
@@ -32,11 +39,6 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
         setUserCourses(res.data);
       });
     }
-
-    if (!session) {
-      router.push("/login");
-    }
-    
   }, [session]);
 
   useEffect(() => {
