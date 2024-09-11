@@ -30,7 +30,7 @@ const Backoffice: React.FC<{ session: any }> = ({ session }) => {
       router.push("/login");
     }
 
-    if (sessionData?.user?.role !== "admin" || sessionData?.user?.email !== "admin@admin.com") {
+    if (sessionData?.user?.email !== "admin@admin.com") {
       router.push("/");
     }
   }, [status]);
