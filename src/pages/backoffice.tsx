@@ -22,6 +22,18 @@ const Backoffice: React.FC<{ session: any }> = ({ session }) => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [pdfs, setPDFs] = useState<Pdf[]>([]);
   const [topics, setTopics] = useState<Topic[]>([]);
+  const { data: sessionData, status }: any = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/login");
+    }
+
+    if (sessionData?.user?.role !== "admin" || sessionData?.user?.email !== "admin@admin.com") {
+      router.push("/");
+    }
+  }, [status]);
 
   useEffect(() => {
     API.getUsers().then((res: any) => {
@@ -102,33 +114,5 @@ const Backoffice: React.FC<{ session: any }> = ({ session }) => {
     </>
   );
 };
-
-export async function getServerSideProps(context: any) {
-  const session: any = await getSession(context);
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-  
-  if (session && session.user?.email !== "admin@admin.com") {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {
-      session,
-    },
-  };
-}
 
 export default Backoffice;
