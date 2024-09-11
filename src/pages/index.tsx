@@ -27,6 +27,12 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
   const router = useRouter();
 
   useEffect(() => {
+    if (!session) {
+      router.push("/login");
+    }
+  }, [session, router]);
+
+  useEffect(() => {
     if (session) {
       API.getMyCoursesByUserId(session.user?.id).then((res: any) => {
         setUserCourses(res.data);
@@ -36,8 +42,10 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
 
   useEffect(() => {
     if (session && userCourses.length) {
-      const pdfs: any[] = []
-      userCourses.forEach((course) => course.coursePdf.forEach((pdf: any) => pdfs.push(pdf.pdfTitle)));
+      const pdfs: any[] = [];
+      userCourses.forEach((course) =>
+        course.coursePdf.forEach((pdf: any) => pdfs.push(pdf.pdfTitle))
+      );
       setUserPdfs(pdfs);
     }
   }, [session, userCourses]);
@@ -108,7 +116,7 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
                   </span>
                 </Text>
                 <Button
-                  mt={{base: "4", md: "7"}}
+                  mt={{ base: "4", md: "7" }}
                   w="100%"
                   h="35px"
                   bg="primary"
@@ -137,7 +145,7 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
                   </span>
                 </Text>
                 <Button
-                  mt={{base: "4", md: "7"}}
+                  mt={{ base: "4", md: "7" }}
                   w="100%"
                   h="35px"
                   bg="primary"
@@ -160,20 +168,11 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
 
-  if (session !== null) {
-    return {
-      props: {
-        session,
-      },
-    };
-  } else {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
+  return {
+    props: {
+      session,
+    },
+  };
 }
 
 export default Home;
