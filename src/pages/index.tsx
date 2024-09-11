@@ -25,7 +25,16 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
   const [userPdfs, setUserPdfs] = useState<any[]>([]);
   const { data: sessionData, status } = useSession();
 
+  console.log(sessionData);
+  console.log(status);
+
   const router = useRouter();
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/login");
+    }
+  }, [status, router]);
 
   useEffect(() => {
     if (session) {
@@ -44,6 +53,8 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
       setUserPdfs(pdfs);
     }
   }, [session, userCourses]);
+
+  if (status === "loading" || status === "unauthenticated") return null;
 
   return (
     <>
