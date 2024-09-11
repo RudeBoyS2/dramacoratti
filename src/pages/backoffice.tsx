@@ -58,6 +58,8 @@ const Backoffice: React.FC<{ session: any }> = ({ session }) => {
     });
   }, []);
 
+  if (!session || session?.user?.email !== "admin@admin.com") return null;
+
   return (
     <>
       <Navbar />

@@ -19,14 +19,14 @@ type Course = {
   id: string;
 };
 
-const Home: NextPage<{ session: any }> = ({ session }) => {
+const Home: NextPage = () => {
   const [open, setOpen] = useState(false);
   const [userCourses, setUserCourses] = useState<Course[]>([]);
   const [userPdfs, setUserPdfs] = useState<any[]>([]);
   const { data: sessionData, status }: any = useSession();
 
   const router = useRouter();
-  
+
   useEffect(() => {
     if (status === "unauthenticated") {
       router.push("/login");

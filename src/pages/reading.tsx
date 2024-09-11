@@ -18,6 +18,10 @@ const Courses: React.FC = () => {
   const { data: session, status }: any = useSession();
 
   useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/login");
+    }
+    
     if (session) {
       API.getMyCoursesByUserId(session.user.id).then((res: any) => {
         const filteredData: Course[] = res?.data?.filter(
@@ -32,6 +36,8 @@ const Courses: React.FC = () => {
       });
     }
   }, [session]);
+
+  if (!session) return null;
 
   return (
     <>

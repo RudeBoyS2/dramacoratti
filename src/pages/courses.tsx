@@ -52,6 +52,8 @@ const Courses: React.FC = () => {
         }
     }, [session]);
 
+    if (!session) return null;
+
     return (
         <>
             <Navbar />
