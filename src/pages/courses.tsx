@@ -57,16 +57,16 @@ const Courses: React.FC = () => {
     return (
         <>
             <Navbar />
-            <Flex w="100%" bg="#f1f2f3" overflow="hidden">
+            <Flex w="100%" bg="#f1f2f3">
                 <Sidebar open={open} setOpen={setOpen} />
                 <Container open={open} setOpen={setOpen}>
                     <Flex
                         align="center"
                         w="100%"
                         maxH="100%"
-                        overflow="auto"
                         gap={{ base: 12, lg: "12" }}
                         flexDirection={{ base: "column-reverse", sm: "row" }}
+                        marginTop={{ base: "6", md: "0" }}
                         bg="#f1f2f3"
                     >
                         <Flex flexDirection="column" align="center" mx="4">

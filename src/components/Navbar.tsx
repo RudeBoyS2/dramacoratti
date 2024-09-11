@@ -24,7 +24,7 @@ const Navbar: React.FC = () => {
                 align="center"
                 borderBottom="1px solid #e2e8f0"
                 bg="#f1f2f3"
-                zIndex="100"
+                zIndex="3"
             >
                 <ChakraNextImage
                     src="/assets/logo.png"

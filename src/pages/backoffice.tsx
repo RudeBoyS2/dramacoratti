@@ -58,16 +58,21 @@ const Backoffice: React.FC = () => {
     });
   }, []);
 
-  if (!sessionData || sessionData?.user?.email !== "admin@admin.com") return null;
+  if (!sessionData || sessionData?.user?.email !== "admin@admin.com")
+    return null;
 
   return (
     <>
       <Navbar />
       <Flex w="100%" h="88%">
         <Sidebar open={open} setOpen={setOpen} />
-        <Container open={open} setOpen={setOpen}>
+        <Container
+          open={open}
+          setOpen={setOpen}
+          style={{ overflowX: "hidden" }}
+        >
           <Flex flexDir="column" h="100%">
-            <Flex w="100%" py="2rem" gap="3rem" px="5">
+            <Flex w="100%" py="2rem" gap="3rem" px="5" overflowX="auto">
               <BackofficeItem
                 icon={AiOutlineUsergroupAdd}
                 text="Usuarios"

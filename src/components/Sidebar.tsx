@@ -27,7 +27,7 @@ const Sidebar: React.FC<Props> = ({ open, setOpen }) => {
         gap="2rem"
         position="fixed"
         transition="all 0.5s ease"
-        zIndex="999999"
+        zIndex="3"
       >
         <Flex
           pl={open ? "0.6rem" : "1rem"}
