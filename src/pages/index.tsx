@@ -23,9 +23,9 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
   const [open, setOpen] = useState(false);
   const [userCourses, setUserCourses] = useState<Course[]>([]);
   const [userPdfs, setUserPdfs] = useState<any[]>([]);
-  const { data: sessionData, status } = useSession();
-
-  console.log(sessionData);
+  const { data: sessionData, status }: any = useSession();
+  
+  console.log(sessionData?.user?.id);
   console.log(status);
 
   const router = useRouter();
@@ -34,25 +34,25 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
     if (status === "unauthenticated") {
       router.push("/login");
     }
-  }, [status, router]);
+  }, [status]);
 
   useEffect(() => {
-    if (session) {
-      API.getMyCoursesByUserId(session.user?.id).then((res: any) => {
+    if (sessionData) {
+      API.getMyCoursesByUserId(sessionData.user?.id).then((res: any) => {
         setUserCourses(res.data);
       });
     }
-  }, [session]);
+  }, [sessionData]);
 
   useEffect(() => {
-    if (session && userCourses.length) {
+    if (sessionData && userCourses.length) {
       const pdfs: any[] = [];
       userCourses.forEach((course) =>
         course.coursePdf.forEach((pdf: any) => pdfs.push(pdf.pdfTitle))
       );
       setUserPdfs(pdfs);
     }
-  }, [session, userCourses]);
+  }, [sessionData, userCourses]);
 
   if (!sessionData) return null;
 
@@ -171,13 +171,13 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
   );
 };
 
-export async function getServerSideProps(context: any) {
-  const session = await getSession(context);
-  
+export async function getServerSideProps() {
+  const session = await getSession();
+
   return {
-    props: {
-      session,
-    },
+      props: {
+          session,
+      },
   };
 }
 
