@@ -15,7 +15,7 @@ import { useRouter } from "next/router";
 import TableTopics from "../components/TableTopics";
 import TablePdfs from "../components/TablePdfs";
 
-const Backoffice: React.FC<{ session: any }> = ({ session }) => {
+const Backoffice: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [category, setCategory] = useState("Usuarios");
   const [users, setUsers] = useState<User[]>([]);
@@ -58,7 +58,7 @@ const Backoffice: React.FC<{ session: any }> = ({ session }) => {
     });
   }, []);
 
-  if (!session || session?.user?.email !== "admin@admin.com") return null;
+  if (!sessionData || sessionData?.user?.email !== "admin@admin.com") return null;
 
   return (
     <>
