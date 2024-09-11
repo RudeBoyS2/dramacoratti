@@ -54,7 +54,7 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
     }
   }, [session, userCourses]);
 
-  if (status === "loading" || status === "unauthenticated") return null;
+  if (!sessionData) return null;
 
   return (
     <>
