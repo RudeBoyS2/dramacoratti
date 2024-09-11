@@ -32,6 +32,11 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
         setUserCourses(res.data);
       });
     }
+
+    if (!session) {
+      router.push("/login");
+    }
+    
   }, [session]);
 
   useEffect(() => {
@@ -161,14 +166,6 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
 
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
-
-  // if (!session) {
-  //   return {
-  //     redirect: {
-  //       destination: "/login",
-  //     },
-  //   };
-  // }
   
   return {
     props: {
