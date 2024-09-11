@@ -26,9 +26,7 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
   const { data: sessionData, status }: any = useSession();
 
   const router = useRouter();
-  console.log(session)
-  console.log(sessionData)
-
+  
   useEffect(() => {
     if (status === "unauthenticated") {
       router.push("/login");

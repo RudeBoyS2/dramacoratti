@@ -9,11 +9,13 @@ import Sidebar from "../components/Sidebar";
 import API from "../utils/API";
 import PdfCard from "../components/PdfCard";
 
-const Courses: React.FC<{ session: any }> = ({ session }) => {
+const Courses: React.FC = () => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const [courses, setCourses] = useState<Course[]>([]);
   const [pdfs, setPdfs] = useState<(Pdf | undefined)[]>([]);
+
+  const { data: session, status }: any = useSession();
 
   useEffect(() => {
     if (session) {
@@ -71,22 +73,3 @@ const Courses: React.FC<{ session: any }> = ({ session }) => {
 };
 
 export default Courses;
-
-export async function getServerSideProps(context: any) {
-  const session = await getSession(context);
-
-  if (session !== null) {
-    return {
-      props: {
-        session,
-      },
-    };
-  } else {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-}
