@@ -27,7 +27,7 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!session) {
+    if (session !== null && session === undefined) {
       router.push("/login");
     }
   }, [session, router]);
