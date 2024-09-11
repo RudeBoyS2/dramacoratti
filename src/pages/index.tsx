@@ -162,13 +162,13 @@ const Home: NextPage<{ session: any }> = ({ session }) => {
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
 
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/login",
-      },
-    };
-  }
+  // if (!session) {
+  //   return {
+  //     redirect: {
+  //       destination: "/login",
+  //     },
+  //   };
+  // }
   
   return {
     props: {
